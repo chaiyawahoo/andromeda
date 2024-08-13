@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8ia3trdefk37"]
+
+[ext_resource type="Script" path="res://scripts/ui_handler.gd" id="1_7d371"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7d371")
+
+[node name="ScoreLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="ScoreLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score: "
+
+[node name="StartLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="StartLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="StartLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit Game"

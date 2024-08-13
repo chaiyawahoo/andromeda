@@ -1,16 +1,13 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://xa5p85pterr2"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vdsan"]
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://xa5p85pterr2"]
 
 [sub_resource type="Sky" id="Sky_4yja4"]
-sky_material = SubResource("ProceduralSkyMaterial_vdsan")
 
 [resource]
 background_mode = 2
 sky = SubResource("Sky_4yja4")
 ambient_light_source = 3
+ambient_light_color = Color(0.564706, 0.388235, 1, 1)
 reflected_light_source = 2
-fog_light_color = Color(0.517647, 0.552941, 0.607843, 1)
-fog_density = 1.252
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.1
+volumetric_fog_density = 0.0184
+volumetric_fog_albedo = Color(0.00784314, 0.00784314, 0.00784314, 1)

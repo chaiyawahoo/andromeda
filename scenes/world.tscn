@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://sgehbf1x66ph"]
+
+[ext_resource type="PackedScene" uid="uid://buqhb56vngq5f" path="res://scenes/entities/player.tscn" id="1_ijdq5"]
+[ext_resource type="PackedScene" uid="uid://dhny6dod2guub" path="res://scenes/modules/empty_module.tscn" id="3_omwn5"]
+
+[node name="World" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ijdq5")]
+
+[node name="EmptyModule" parent="." instance=ExtResource("3_omwn5")]
+
+[node name="EmptyModule2" parent="." instance=ExtResource("3_omwn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.258819, 0.965926, 0, -0.965926, -0.258819, 0, 0, 0)
+light_energy = 1.5
+shadow_enabled = true
+shadow_opacity = 0.75
+shadow_blur = 5.0
+directional_shadow_blend_splits = true

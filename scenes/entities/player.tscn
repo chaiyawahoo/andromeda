@@ -1,18 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://buqhb56vngq5f"]
+[gd_scene load_steps=7 format=3 uid="uid://buqhb56vngq5f"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nxnb7"]
+[ext_resource type="Material" uid="uid://u3al06txby5p" path="res://art/materials/ship_material.tres" id="2_8keom"]
+[ext_resource type="Environment" uid="uid://xa5p85pterr2" path="res://art/lighting/environment.tres" id="3_id7lh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1rf58"]
+points = PackedVector3Array(4, 0, -0.25, 0, -0.5, -0.25, -4, 0, -0.25, -1, 0.5, -0.25, 1, 0.5, -0.25, 1, 0.5, 0.25, 4, 0, 0.25, 0, -0.5, 0.25, -4, 0, 0.25, -1, 0.5, 0.25, 0, 0, 0.25)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_strvn"]
+points = PackedVector3Array(-1, 0, -0.25, 1, 0, -0.25, 0, 4, -0.25, -1, 0, 0.25, 1, 0, 0.25, 0, 4, 0.25)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_682mp"]
 
 [node name="Player" type="CharacterBody3D"]
+collision_mask = 3
+motion_mode = 1
 script = ExtResource("1_nxnb7")
 
-[node name="Ship" type="CollisionPolygon3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.25, 0)
-rotation_order = 3
-depth = 0.5
+[node name="ShipModel" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.25, 0)
+rotation_order = 5
+material_override = ExtResource("2_8keom")
 polygon = PackedVector2Array(0, 4, 1, 0, 4, -0.5, 0, -1, -4, -0.5, -1, 0)
-metadata/_edit_group_ = true
+depth = 0.5
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Ship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09278e-08, 0.25)
-polygon = PackedVector2Array(0, 4, 1, 0, 4, -0.5, 0, -1, -4, -0.5, -1, 0)
-depth = 0.5
+[node name="ShipWings" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.5)
+rotation_order = 5
+shape = SubResource("ConvexPolygonShape3D_1rf58")
+
+[node name="ShipNose" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+rotation_order = 5
+shape = SubResource("ConvexPolygonShape3D_strvn")
+
+[node name="Sniffer" type="Area3D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sniffer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+shape = SubResource("SphereShape3D_682mp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 7.6194e-09, -8.70901e-08, 0, 0.996195, 0.0871557, 8.74228e-08, 0.0871557, -0.996195, 0, 2, -10)
+environment = ExtResource("3_id7lh")

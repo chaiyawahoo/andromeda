@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://by3hlnb3srsqf"]
+
+[ext_resource type="Material" uid="uid://duej6je33sg0x" path="res://art/materials/world_material.tres" id="1_wauhh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_taevn"]
+size = Vector3(21, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_50w5j"]
+size = Vector3(1, 15, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lsx2i"]
+size = Vector3(9, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bg1vl"]
+size = Vector3(9, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx0op"]
+size = Vector3(21, 15, 1)
+
+[node name="MiddleVerticalModule" type="Node3D"]
+
+[node name="Y- Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+material_override = ExtResource("1_wauhh")
+mesh = SubResource("BoxMesh_taevn")
+
+[node name="X+ Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, 0)
+material_override = ExtResource("1_wauhh")
+mesh = SubResource("BoxMesh_50w5j")
+
+[node name="X- Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 0)
+material_override = ExtResource("1_wauhh")
+mesh = SubResource("BoxMesh_50w5j")
+
+[node name="LeftObstacle" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftObstacle"]
+material_override = ExtResource("1_wauhh")
+mesh = SubResource("BoxMesh_lsx2i")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftObstacle"]
+shape = SubResource("BoxShape3D_bg1vl")
+
+[node name="RightObstacle" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightObstacle"]
+material_override = ExtResource("1_wauhh")
+mesh = SubResource("BoxMesh_lsx2i")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightObstacle"]
+shape = SubResource("BoxShape3D_bg1vl")
+
+[node name="ScoreBox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ScoreBox"]
+shape = SubResource("BoxShape3D_nx0op")
+
+[node name="Lights" type="Node3D" parent="."]
+visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, -3.09086e-08, 0.707107, 0.707107, -1, 0, -4.37114e-08, 10, 8, 12)
+light_color = Color(1, 0.529412, 0.529412, 1)
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 30.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1.19209e-07, 0.707107, -0.707107, -4.5302e-08, 0.707107, 0.707107, 1, -5.22603e-08, 1.16327e-07, -10, 8, 12)
+light_color = Color(1, 0.529412, 0.529412, 1)
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 30.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(-3.09086e-08, -0.707107, 0.707107, -3.09086e-08, 0.707107, 0.707107, -1, 0, -4.37114e-08, 10, 8, -12)
+light_color = Color(1, 0.529412, 0.529412, 1)
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 30.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(1.19209e-07, 0.707107, -0.707107, -4.5302e-08, 0.707107, 0.707107, 1, -5.22603e-08, 1.16327e-07, -10, 8, -12)
+light_color = Color(1, 0.529412, 0.529412, 1)
+light_energy = 10.0
+shadow_enabled = true
+spot_range = 30.0
