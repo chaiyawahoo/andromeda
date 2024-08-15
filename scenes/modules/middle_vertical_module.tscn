@@ -38,7 +38,7 @@ material_override = ExtResource("2_mfcq1")
 mesh = SubResource("BoxMesh_50w5j")
 
 [node name="LeftObstacle" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2, 0)
 collision_layer = 2
 script = ExtResource("3_c1xlo")
 motion = Vector3(4, 0, 0)
@@ -52,7 +52,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bg1vl")
 
 [node name="RightObstacle" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, 0)
 collision_layer = 2
 script = ExtResource("3_c1xlo")
 motion = Vector3(-4, 0, 0)

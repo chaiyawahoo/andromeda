@@ -12,10 +12,10 @@ size = Vector3(21, 1, 50)
 size = Vector3(1, 15, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lsx2i"]
-size = Vector3(21, 5.5, 1)
+size = Vector3(21, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bg1vl"]
-size = Vector3(21, 5.5, 1)
+size = Vector3(21, 5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx0op"]
 size = Vector3(21, 15, 1)
@@ -38,7 +38,7 @@ material_override = ExtResource("2_sqveq")
 mesh = SubResource("BoxMesh_50w5j")
 
 [node name="BottomObstacle" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 collision_layer = 2
 script = ExtResource("3_jecxk")
 motion = Vector3(0, 4, 0)
@@ -52,7 +52,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_bg1vl")
 
 [node name="TopObstacle" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 collision_layer = 2
 script = ExtResource("3_jecxk")
 motion = Vector3(0, -4, 0)

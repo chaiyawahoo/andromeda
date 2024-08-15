@@ -28,4 +28,4 @@ func toggle_start_layer() -> void:
 	if $StartLayer.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN

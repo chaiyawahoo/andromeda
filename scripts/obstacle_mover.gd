@@ -11,6 +11,8 @@ var delaying := true
 
 
 func _ready() -> void:
+	if GameHandler.score < 5000:
+		return
 	mesh_instance.position -= motion
 	if mesh_instance.global_position.z - GameHandler.player.global_position.z < 300:
 		delaying = false

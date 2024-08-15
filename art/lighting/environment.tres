@@ -15,4 +15,4 @@ glow_blend_mode = 0
 fog_light_color = Color(0, 0, 0, 1)
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.025
-volumetric_fog_albedo = Color(0.054902, 0.054902, 0.054902, 1)
+volumetric_fog_albedo = Color(0.0901961, 0.0470588, 0.105882, 1)
