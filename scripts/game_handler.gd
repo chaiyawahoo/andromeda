@@ -9,6 +9,7 @@ var score_mulitplier := 100
 var is_playing := false
 var world: Node3D
 var player: Player
+var camera_follow := true
 
 
 func _ready() -> void:

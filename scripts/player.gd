@@ -15,6 +15,8 @@ var position_goal := Vector3.ZERO
 var mouse_diff := Vector2.ZERO
 var mouse_start := Vector2.ZERO
 
+var speeding := false
+
 var ship_colliders: Array[CollisionShape3D]
 @onready var ship_model: CSGPolygon3D = $ShipModel
 @onready var camera: Camera3D = $Camera3D
@@ -26,6 +28,8 @@ func _ready() -> void:
 	ship_colliders.append($ShipWings)
 	ship_colliders.append($ShipNose)
 	$Sniffer.area_entered.connect(_on_area_entered_sniffer)
+	if not GameHandler.camera_follow:
+		camera.position.y = 4
 
 
 func _input(event: InputEvent) -> void:
@@ -40,6 +44,14 @@ func _input(event: InputEvent) -> void:
 		is_vertical = not is_vertical
 	if event is InputEventMouseMotion:
 		mouse_diff += event.relative
+	if event.is_action("speed") and just_pressed:
+		if GameHandler.score > 5000:
+			return
+		speed_coefficient *= 2
+		speeding = true
+	elif event.is_action("speed") and event.is_released() and not event.is_echo() and speeding:
+		speeding = false
+		speed_coefficient /= 2
 
 
 func _process(delta: float) -> void:
@@ -49,7 +61,7 @@ func _process(delta: float) -> void:
 	speed_coefficient += delta / 60.0
 	
 	position_goal = $Camera3D2.project_position(mouse_diff, 10)
-	var mouse_diff_goal = get_viewport().get_camera_3d().project_position(mouse_diff, 10)
+	var mouse_diff_goal = camera.project_position(mouse_diff, 10)
 	
 	if is_vertical:
 		position_goal.x = clampf(position_goal.x, -7, 7)
@@ -61,8 +73,15 @@ func _process(delta: float) -> void:
 	ship_model.position.x = lerpf(ship_model.position.x, position_goal.x, delta * move_coefficient)
 	ship_model.position.y = lerpf(ship_model.position.y, position_goal.y, delta * move_coefficient)
 	
-	camera.position.x = lerpf(camera.position.x, position_goal.x * 1.25 + camera_start.x, delta * move_coefficient)
-	camera.position.y = lerpf(camera.position.y, position_goal.y * 1.25 + camera_start.y, delta * move_coefficient)
+	if GameHandler.camera_follow:
+		camera.position.x = lerpf(camera.position.x, position_goal.x * 1.25 + camera_start.x, delta * move_coefficient)
+		camera.position.y = lerpf(camera.position.y, position_goal.y * 1.25 + camera_start.y, delta * move_coefficient)
+		
+	if GameHandler.score > 5000 and speeding:
+		speeding = false
+		speed_coefficient /= 2
+	
+	print(speed_coefficient)
 
 
 func _physics_process(delta: float) -> void:
