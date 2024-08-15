@@ -9,7 +9,7 @@ var modules : Array[PackedScene] = [
 	preload("res://scenes/modules/middle_horizontal_module.tscn"),
 	preload("res://scenes/modules/left_vertical_module.tscn"),
 	preload("res://scenes/modules/right_vertical_module.tscn"),
-	preload("res://scenes/modules/middle_horizontal_split_module.tscn"),
+	#preload("res://scenes/modules/middle_horizontal_split_module.tscn"),
 	preload("res://scenes/modules/high_horizontal_split_module.tscn"),
 	preload("res://scenes/modules/low_horizontal_split_module.tscn")
 ]
@@ -26,5 +26,5 @@ func spawn_module() -> void:
 
 func queue_despawn(module: Node3D) -> void:
 	await get_tree().create_timer(2).timeout
-	if module:
-		module.queue_free()
+	if module != null and GameHandler.is_playing:
+		module.free()

@@ -4,6 +4,7 @@ extends Control
 func _ready() -> void:
 	%StartButton.pressed.connect(start_game)
 	%QuitButton.pressed.connect(quit_game)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func set_score(new_score: float) -> void:
@@ -24,3 +25,7 @@ func quit_game() -> void:
 
 func toggle_start_layer() -> void:
 	$StartLayer.visible = not $StartLayer.visible
+	if $StartLayer.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

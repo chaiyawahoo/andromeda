@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhny6dod2guub"]
+[gd_scene load_steps=6 format=3 uid="uid://dhny6dod2guub"]
 
-[ext_resource type="Material" uid="uid://duej6je33sg0x" path="res://art/materials/world_material.tres" id="1_iw2c3"]
+[ext_resource type="Material" uid="uid://b8t78rklrv0pa" path="res://art/materials/floor.tres" id="1_au6k0"]
+[ext_resource type="Material" uid="uid://1h1lxu67y2r4" path="res://art/materials/wall.tres" id="2_4a5vy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_taevn"]
+lightmap_size_hint = Vector2i(359, 266)
 size = Vector3(21, 1, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_50w5j"]
@@ -15,17 +17,17 @@ size = Vector3(21, 15, 1)
 
 [node name="Y- Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
-material_override = ExtResource("1_iw2c3")
+material_override = ExtResource("1_au6k0")
 mesh = SubResource("BoxMesh_taevn")
 
 [node name="X+ Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, 0)
-material_override = ExtResource("1_iw2c3")
+material_override = ExtResource("2_4a5vy")
 mesh = SubResource("BoxMesh_50w5j")
 
 [node name="X- Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 0)
-material_override = ExtResource("1_iw2c3")
+material_override = ExtResource("2_4a5vy")
 mesh = SubResource("BoxMesh_50w5j")
 
 [node name="ScoreBox" type="Area3D" parent="."]

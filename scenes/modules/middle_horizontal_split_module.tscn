@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2n76gup8hdsa"]
+[gd_scene load_steps=9 format=3 uid="uid://d2n76gup8hdsa"]
 
-[ext_resource type="Material" uid="uid://duej6je33sg0x" path="res://art/materials/world_material.tres" id="1_45k47"]
+[ext_resource type="Material" uid="uid://b8t78rklrv0pa" path="res://art/materials/floor.tres" id="1_6vjl8"]
+[ext_resource type="Material" uid="uid://1h1lxu67y2r4" path="res://art/materials/wall.tres" id="2_ony6f"]
+[ext_resource type="Material" uid="uid://clmecu6lqon81" path="res://art/materials/split.tres" id="3_d6rgq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_taevn"]
 size = Vector3(21, 1, 50)
@@ -21,17 +23,17 @@ size = Vector3(21, 15, 1)
 
 [node name="Y- Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
-material_override = ExtResource("1_45k47")
+material_override = ExtResource("1_6vjl8")
 mesh = SubResource("BoxMesh_taevn")
 
 [node name="X+ Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, 0)
-material_override = ExtResource("1_45k47")
+material_override = ExtResource("2_ony6f")
 mesh = SubResource("BoxMesh_50w5j")
 
 [node name="X- Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2, 0)
-material_override = ExtResource("1_45k47")
+material_override = ExtResource("2_ony6f")
 mesh = SubResource("BoxMesh_50w5j")
 
 [node name="Obstacle" type="StaticBody3D" parent="."]
@@ -39,7 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Obstacle"]
-material_override = ExtResource("1_45k47")
+material_override = ExtResource("3_d6rgq")
 mesh = SubResource("BoxMesh_lsx2i")
 skeleton = NodePath("../..")
 

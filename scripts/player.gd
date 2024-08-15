@@ -12,6 +12,8 @@ var is_dead := false
 
 var angle_goal: float = 0
 var position_goal := Vector3.ZERO
+var mouse_diff := Vector2.ZERO
+var mouse_start := Vector2.ZERO
 
 var ship_colliders: Array[CollisionShape3D]
 @onready var ship_model: CSGPolygon3D = $ShipModel
@@ -20,6 +22,7 @@ var ship_colliders: Array[CollisionShape3D]
 
 
 func _ready() -> void:
+	mouse_diff = get_viewport().get_mouse_position()
 	ship_colliders.append($ShipWings)
 	ship_colliders.append($ShipNose)
 	$Sniffer.area_entered.connect(_on_area_entered_sniffer)
@@ -35,6 +38,8 @@ func _input(event: InputEvent) -> void:
 		else:
 			angle_goal = 0
 		is_vertical = not is_vertical
+	if event is InputEventMouseMotion:
+		mouse_diff += event.relative
 
 
 func _process(delta: float) -> void:
@@ -43,7 +48,8 @@ func _process(delta: float) -> void:
 	
 	speed_coefficient += delta / 60.0
 	
-	position_goal = get_viewport().get_camera_3d().project_position(get_viewport().get_mouse_position(), 10)
+	position_goal = $Camera3D2.project_position(mouse_diff, 10)
+	var mouse_diff_goal = get_viewport().get_camera_3d().project_position(mouse_diff, 10)
 	
 	if is_vertical:
 		position_goal.x = clampf(position_goal.x, -7, 7)
@@ -55,8 +61,8 @@ func _process(delta: float) -> void:
 	ship_model.position.x = lerpf(ship_model.position.x, position_goal.x, delta * move_coefficient)
 	ship_model.position.y = lerpf(ship_model.position.y, position_goal.y, delta * move_coefficient)
 	
-	camera.position.x = lerpf(camera.position.x, position_goal.x + camera_start.x, delta * move_coefficient)
-	camera.position.y = lerpf(camera.position.y, position_goal.y + camera_start.y, delta * move_coefficient)
+	camera.position.x = lerpf(camera.position.x, position_goal.x * 1.25 + camera_start.x, delta * move_coefficient)
+	camera.position.y = lerpf(camera.position.y, position_goal.y * 1.25 + camera_start.y, delta * move_coefficient)
 
 
 func _physics_process(delta: float) -> void:
@@ -102,9 +108,6 @@ func rotate_ship(delta: float, x_angle: float, y_angle: float) -> void:
 
 func die() -> void:
 	ship_model.queue_free()
-	for ship_part in ship_colliders:
-		ship_part.queue_free()
-	ship_colliders = []
 	is_dead = true
 	GameHandler.is_playing = false
 	GameHandler.score = 0
